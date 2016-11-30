@@ -1,0 +1,9 @@
+<html>
+<head>
+    <title></title>
+    </head>
+        <frameset cols="210,*" id="fraContent">
+            <frame noresize name="left" src="a.html" />
+            <frame noresize name="right" src="" />
+        </frameset>
+</html>

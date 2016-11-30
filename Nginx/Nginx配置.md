@@ -1,5 +1,6 @@
 ###参考链接
 https://wenjs.me/p/note-of-nginx-configure
+https://segmentfault.com/a/1190000002797606
 ###Nginx介绍
 Nginx是一个高性能的HTTP和反向代理服务器，也是一个IMAP/POP3/SMTP代理服务器，相较于Apache，具有占有内存少、稳定性高等优势。Nginx安装非常简单、配置文件简洁，但是配置的类目却不少，本文主要记录Nginx的安装以及相关的配置（以下操作在CentOS6.7 64bit环境下）
 ###Nginx安装

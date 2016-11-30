@@ -1,0 +1,41 @@
+1.itellyou下载sqlserver 2008
+2.选择32位，wampserver2.2e(64位我出现了问题)
+3.wamp启动失败，去修改apache配置。(80端口的问题)
+4，将php_sqlsrv_53_ts.dll和php_pdo_sqlsrv_53_ts.dll放入C:\wamp\bin\php\php5.3.13\ext
+5.修改php.ini
+6.添加扩展(千万别写错)
+extension=php_sqlsrv_53_ts.dll
+extension=php_pdo_sqlsrv_53_ts.dll
+7.phoinfo()里查看sqlsrv模块是否存在
+6.写个test.php
+<?php
+$conInfo=array("Database"=>"test", "UID"=>"sa", "PWD"=>"123456");
+$conn=sqlsrv_connect("127.0.0.1", $conInfo);
+ 
+/*判断连接成功与否：*/
+if( $conn == false )
+{
+die( print_r( sqlsrv_errors(), true));
+}
+else
+{
+	$query=sqlsrv_query($conn, "select * from ims_users");
+	//$arr = sqlsrv_fetch($rs);
+	//var_dump($arr);
+	//$arr = sqlsrv_fetch_array($query,SQLSRV_FETCH_ASSOC);
+	while($row = sqlsrv_fetch_array($query,SQLSRV_FETCH_ASSOC)){
+		var_dump($row);
+	}
+	//var_dump($arr);
+}
+
+8.报错
+Array ( [0] => Array ( [0] => IMSSP [SQLSTATE] => IMSSP [1] => -49 [code] => -49 [2] => This extension requires the Microsoft SQL Server 2012 Native Client. Access the following URL to download the Microsoft SQL Server 2012 Native Client ODBC driver for x86: http://go.microsoft.com/fwlink/?LinkId=163712 [message] => This extension requires the Microsoft SQL Server 2012 Native Client. Access the following URL to download the Microsoft SQL Server 2012 Native Client ODBC driver for x86: http://go.microsoft.com/fwlink/?LinkId=163712 ) [1] => Array ( [0] => IM002 [SQLSTATE] => IM002 [1] => 0 [code] => 0 [2] => [Microsoft][ODBC 驱动程序管理器] 未发现数据源名称并且未指定默认驱动程序 [message] => [Microsoft][ODBC 驱动程序管理器] 未发现数据源名称并且未指定默认驱动程序 ) 
+9.需要安装sqlncli2012.msi
+10.继续报错
+Array ( [0] => Array ( [0] => 08001 [SQLSTATE] => 08001 [1] => 5 [code] => 5 [2] => [Microsoft][SQL Server Native Client 11.0]Named Pipes Provider: Could not open a connection to SQL Server [5]. [message] => [Microsoft][SQL Server Native Client 11.0]Named Pipes Provider: Could not open a connection to SQL Server [5]. ) [1] => Array ( [0] => HYT00 [SQLSTATE] => HYT00 [1] => 0 [code] => 0 [2] => [Microsoft][SQL Server Native Client 11.0]Login timeout expired [message] => [Microsoft][SQL Server Native Client 11.0]Login timeout expired ) [2] => Array ( [0] => 08001 [SQLSTATE] => 08001 [1] => 5 [code] => 5 [2] => [Microsoft][SQL Server Native Client 11.0]A network-related or instance-specific error has occurred while establishing a connection to SQL Server. Server is not found or not accessible. Check if instance name is correct and if SQL Server is configured to allow remote connections. For more information see SQL Server Books Online. [message] => [Microsoft][SQL Server Native Client 11.0]A network-related or instance-specific error has occurred while establishing a connection to SQL Server. Server is not found or not accessible. Check if instance name is correct and if SQL Server is configured to allow remote connections. For more information see SQL Server Books Online. ) )
+
+11.各种远程连接的设置问题
+
+12.因为数据库，表名的问题，导致连接不上，改数据库名和表名
+

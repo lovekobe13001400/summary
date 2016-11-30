@@ -1,0 +1,11 @@
+var trs = document.querySelectorAll('.mod-table tbody tr');
+trs = [].slice.apply(trs);
+trs = trs.map(function(tr) {
+  
+  return {
+    name: tr.querySelector('.name a').innerHTML,
+    txt: tr.querySelector('.txt').innerHTML
+  }
+});
+
+console.log(trs)
