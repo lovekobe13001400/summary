@@ -1,0 +1,31 @@
+1.shutdown:
+-c  : 取消前一个关机命令
+-h : 关机
+-r : 重启
+
+马上关机:shutdown -h now
+         shutdown -h 20:30
+
+关机命令:
+halt
+poweroff
+init()
+重启
+reboot
+init 6(系统运行级别)
+0 关机
+1 单用户
+2 不完全多用户,不含nfs服务(linux和unix文件共享,不太安全)
+3 完全多用户
+4 未分配
+5 图形界面
+6 重启
+
+cat /etc/inittab
+查看运行级别并且修改
+
+runlevel:
+查询当前运行级别
+---
+logout退出
+

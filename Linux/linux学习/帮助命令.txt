@@ -1,0 +1,21 @@
+--
+man:
+man ls 查看ls命令的帮助文档
+空格翻页 回车:换行  /指定搜索字符串 q退出
+man services 查看配置文件services的帮助信息
+more /etc/services
+man 1 passwd
+man 5 passwd
+whatis ls :命令的简单信息
+apropos services
+apropos inittab : 查看配置文件的简单信息
+touch --help : 查看命令的主要选项
+man date 修改时间
+date 格式
+--
+more /etc/services
+--
+info
+--
+help:查看shell内置命令(which等无法找到命令路径)的帮助信息
+help umask

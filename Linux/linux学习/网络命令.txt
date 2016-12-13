@@ -1,0 +1,58 @@
+----
+write:
+给用户发信息
+write waker
+hello world
+ctrl+d保存结束
+wall
+给所有用户发送信息
+wall hello
+
+---
+ping -c 次数 ip
+
+ping -c 3 192.168.1.117
+ping3次
+----
+ifconfig:查看和设置网卡信息
+etho:网卡1
+lo:网卡2:127.0.0.1
+
+ifconfig etho 192.168.1.1设置ip地址(暂时)
+
+---
+mail:查看发送电子邮件 mail[用户名]
+
+
+---
+last:查看用户过去的登陆系统的情况
+lastlog:所有用户最后一次登陆系统情况
+lastlog -u  uid(用户id)
+
+--
+traceroute:显示数据包到主机间的路径
+一般经过很多个网络节点
+
+
+--netstat:查询网络状态
+-t : tcp协议
+-u : udp协议
+-l ; 监听
+-r : 路由
+-n : 显示ip地址和端口号
+netstat -tlun 查看本机监听的端口
+netstat -an 查看本机所有的网络链接
+netstat -rn 查看本机路由表
+
+
+---setup:配置网路
+redhat系列专有
+
+
+---mount:
+mount[-t文件系统] 设备文件名  挂载点
+mount -t iso9660  /dev/sr0/  /mnt/cdrom
+
+
+
+
