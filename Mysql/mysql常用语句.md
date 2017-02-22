@@ -119,3 +119,22 @@ select * from talent where talent_mark in (select talent_mark as m from( select 
 
 ②update talent set talent_mark=id where talent_mark is null or talent_mark='0';
 
+###时间格式化
+//查询时间，友好提示
+$sql = "select date_format(create_time, '%Y-%m-%d') as day from table_name";
+###int 时间戳类型
+$sql = "select from_unixtime(create_time, '%Y-%m-%d') as day from table_name";
+###替换某字段的内容的语句
+update user set content = REPLACE(content, 'hello', 'hi') where content like "%hello%"
+找到所有hello模糊匹配的记录，然后把hello替换成hi，
+###获取表中某字段包含某字符串的数据（更模糊匹配没什么区别啊）
+select * from user WHERE LOCATE('hi',content);
+###获取字段中的前4位
+$sql = "SELECT SUBSTRING(字段名,1,4) FROM 表名 ";
+
+###删除表中多余的重复记录(留id最小)
+	//单个字段
+	$sql = "delete from 表名 where 字段名 in ";
+	$sql .= "(select 字段名 from 表名 group by 字段名 having count(字段名) > 1)  ";
+	$sql .= "and 主键ID not in ";
+	$sql .= "(select min(主键ID) from 表名 group by 字段名 having count(字段名 )>1) ";

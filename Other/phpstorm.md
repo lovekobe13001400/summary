@@ -1,12 +1,12 @@
-1.显示行号(显示空格)
-settings -> Editor->Appearance->Show line numbers
+###1.显示行号(显示空格)
+settings -> Editor->general->Appearance->Show line numbers
 2. 去掉右上角浏览器图标:
 settings -> tools -> WebBrowsers
 3.将编辑的文件加星号标识:
 settings -> editor->general -> editor tabs -> 勾选 mark modifed tabs…
 4.多个项目窗口:
 File -> settings -> Directories -> Add Content Root 选择要添加的项目目录即可。
-5.调整字体大小
+###5.调整字体大小
 file>setting>Editor>Color&Font>Font 这里面设置字体大小（原生的主题不能修改的，你需要把它另存为之后才能修改）
 ---快捷键
 1.ctrl+tab              --  切换到之前编辑的页面:

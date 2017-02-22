@@ -111,3 +111,53 @@ index控制器下的index.html,因为index下控制器下会有很多view
 ###14.读取数据
 1.application/database.php配置数据库信息
 2.
+
+
+-----------------------
+URL和路由 
+-----------------------
+###1.url访问
+访问方式：http://domainName/index.php/模块/控制器/操作
+例如：http://tp5.com/index.php/index/hello_world/index（控制器是HelloWorld）
+参数传递：http://tp5.com/index.php/index/index/hello/name/thinkphp/city/shanghai
+隐藏index.php,在入口问卷的同级添加.htaccess文件（apache）
+	<IfModule mod_rewrite.c>
+	Options +FollowSymlinks -Multiviews
+	RewriteEngine on
+	RewriteCond %{REQUEST_FILENAME} !-d
+	RewriteCond %{REQUEST_FILENAME} !-f
+	RewriteRule ^(.*)$ index.php/$1 [QSA,PT,L]
+	</IfModule>
+如果是nginx
+	location / { // …..省略部分代码
+	    if (!-e $request_filename) {
+	        rewrite  ^(.*)$  /index.php?s=/$1  last;
+	        break;
+	    }
+	}
+
+###2.定义路由规则
+application/route.php添加路有规则（各种规则，支持正则）
+	return [
+	    // 添加路由规则 路由到 index控制器的hello操作方法
+	    'hello/:name' => 'index/index/hello',
+	]; 
+
+-------------------------
+请求和响应
+---------------------------
+###ThinkPHP5的架构设计和之前版本的主要区别之一就在于增加了Request请求对象和Response响应对象的概念，了解了这两个对象的作用和用法对你的应用开发非常关键。
+###1.请求对象
+	获取请求连接（如果继承controller Request::instance()可以省）
+	class Index extends Controller
+	{
+	    public function hello($name = 'World')
+	    {
+	        $request = Request::instance();
+	        // 获取当前URL地址 不含域名
+	        echo 'url: ' . $request->url() . '<br/>';
+	        return 'Hello,' . $name . '！';
+	    }
+	}
+###2.请求信息
+###3.响应对象

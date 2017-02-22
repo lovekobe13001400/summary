@@ -69,6 +69,7 @@
 	2.查看80端口被哪个程序占用
 	lsof -i:80
 	killall -9 apache2 kill掉Apache2占用的进程
+	cnetos安装lsof: yum install lsof
 	3.安装lsof
 	sudo apt-get install lsof
 	4.查找pid

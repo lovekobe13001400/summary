@@ -45,6 +45,12 @@ D（Durability），持久性，表示事务一旦提交了，其结果就是永
 
 
 ###8.事务隔离级别实践
+隔离级别						脏读（Dirty Read）	幻读（Phantom Read）
+未提交读（Read uncommitted）	可能					可能
+已提交读（Read committed）	不可能				可能
+可重复读（Repeatable read）	不可能				可能
+可串行化（Serializable ） 	不可能				不可能
+
 ①user表：id name age  
 ②我们可以可以用SET TRANSACTION语句改变单个会话或者所有新进连接的隔离级别  
 设置隔离级别：SET [SESSION | GLOBAL] TRANSACTION ISOLATION LEVEL {READ UNCOMMITTED | READ COMMITTED | REPEATABLE READ | SERIALIZABLE}  
