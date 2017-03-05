@@ -101,7 +101,45 @@ MySQL配置文件：/etc/my.cnf
 PHP配置文件：/usr/local/php/etc/php.ini
 ###启动命令
 /etc/init.d/mysql start
-
+/etc/init.d/php-fpm stop
+/etc/init.d/php-fpm start
 
 
 ###centos防火墙
+1、关闭firewall：
+systemctl stop firewalld.service #停止firewall
+systemctl disable firewalld.service #禁止firewall开机启动
+firewall-cmd --state #查看默认防火墙状态（关闭后显示notrunning，开启后显示running）
+###安装iptables
+systemctl stop firewalld
+systemctl mask firewalld
+ 
+并且安装iptables-services：
+
+yum install iptables-services
+设置开机启动：
+
+systemctl enable iptables
+systemctl [stop|start|restart] iptables
+#or
+service iptables [stop|start|restart]
+ 
+service iptables save
+#or
+/usr/libexec/iptables/iptables.init save
+
+开发端口配置：Saving firewall rules to /etc/sysconfig/iptables
+
+   1) 重启后生效
+        开启： chkconfig iptables on
+        关闭： chkconfig iptables off
+        2) 即时生效，重启后失效
+        开启： service iptables start
+        关闭： service iptables stop
+ 重启防火墙service iptables restart 
+###安装locate
+yum install mlocate
+updatedb
+
+###安装phpsize
+yum -y install php-devel 然后 /usr/bin/phpize

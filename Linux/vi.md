@@ -69,3 +69,6 @@
     ls /home/shenchao
 	vi /root/vimrc
 	定义一些文本快捷键
+###vim上下左右键问题（重新安装vim）
+1.执行命令 sudo apt-get remove vim-common
+2..执行命令 sudo apt-get install vim
