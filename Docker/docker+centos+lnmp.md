@@ -16,7 +16,7 @@
 下载centos镜像：sudo docker pull centos:7（慢，多尝试）
 查看centos镜像：sudo docker images
 ###3.创建一个容器,使之能运行bash应用
-	sudo docker run -t -i -d --name gooddocker -v /data:/data -p 80:80 -p 90:90 centos /bin/bash
+	sudo docker run -t -i -d --name a123 -v /data:/data -p 80:80 -p 90:90 centos:latest /bin/bash /run.sh
 	-d是以Daemon模式运行。
 	-p 80:80 是将本地80端口映射到容器的80端口，现在可以在本地使用http://localhost访问。
 	-v /web:/www 是将本地的/web目录挂载到容器的/www(容器配置的web目录)目录下。
@@ -32,6 +32,40 @@
 	 make nsenter && sudo cp nsenter /usr/local/bin
 
 	在/usr/local/bin新建docker-enter文件,文件内容如下
+
+	#!/bin/sh
+    if [ -e $(dirname "$0")/nsenter ]; then
+        # with boot2docker, nsenter is not in the PATH but it is in the same folder
+        NSENTER=$(dirname "$0")/nsenter
+    else
+        NSENTER=nsenter
+    fi
+
+    if [ -z "$1" ]; then
+        echo "Usage: `basename "$0"` CONTAINER [COMMAND [ARG]...]"
+        echo ""
+        echo "Enters the Docker CONTAINER and executes the specified COMMAND."
+        echo "If COMMAND is not specified, runs an interactive shell in CONTAINER."
+    else
+        PID=$(docker inspect --format "{{.State.Pid}}" "$1")
+        if [ -z "$PID" ]; then
+            exit 1
+        fi
+        shift
+
+        OPTS="--target $PID --mount --uts --ipc --net --pid --"
+
+        if [ -z "$1" ]; then
+            # No command given.
+            # Use su to clear all host environment variables except for TERM,
+            # initialize the environment variables HOME, SHELL, USER, LOGNAME, PATH,
+            # and start a login shell.
+            "$NSENTER" $OPTS su - root
+        else
+            # Use env to clear all host environment variables.
+            "$NSENTER" $OPTS env --ignore-environment -- "$@"
+        fi
+    fi
 	
 ###5.进入docker
 sudo docker-start gooddocker
@@ -41,10 +75,18 @@ sudo docker-enter gooddocker
 screen -S lnmp
 安装screen命令：yum install screen
 安装wet命令：yum -y install wget
-安装LNMP
-wget -c http://soft.vpser.net/lnmp/lnmp1.3.tar.gz && tar zxf lnmp1.3.tar.gz && cd lnmp1.3 && ./install.sh lnmp
+安装LNMP稳定版本
+wget -c http://soft.vpser.net/lnmp/lnmp1.3-full.tar.gz && tar zxf lnmp1.3-full.tar.gz && cd lnmp1.3-full && ./install.sh lnmp
 ###7.访问成功
 localhost访问，出来nginx欢迎界面
+
+
+###补充
+把安装好的centos7镜像变成centos基础镜像，然后加入启动容器脚本
+1.变 sudo docker commit a4480ff9004e cy
+得到85c5012f8aad10eb85143ff6291e822f46220d5290a561d90e10a30f214a3ae9
+2.查看镜像 docker images
+sudo docker run -t -i -d --name dockercy -v /data:/data -p 80:80 -p 90:90 -p 3306:3306 cy /sbin/init
 ###8.安装Xdebug
 	wget https://xdebug.org/files/xdebug-2.2.7.tgz
 	tar -xvzf xdebug-2.2.7.tgz
@@ -103,7 +145,7 @@ PHP配置文件：/usr/local/php/etc/php.ini
 /etc/init.d/mysql start
 /etc/init.d/php-fpm stop
 /etc/init.d/php-fpm start
-
+/etc/init.d/nginx restart
 
 ###centos防火墙
 1、关闭firewall：
