@@ -1,4 +1,6 @@
 ####参考教程:http://www.liaoxuefeng.com/#
+##git init
+
 ##Git是分布式版本控制系统，所以，每个机器都必须自报家门##
 	$ git config --global user.name "Your Name"
 	$ git config --global user.email "email@example.com"
