@@ -32,3 +32,11 @@ font-size:150%;相对于父容器中字体尺寸进行相应调整为150%大小
 ###外边距
 margin-top
 .....
+
+
+###flex
+	小程序text一行一个
+	.address text{
+	    display:flex;
+		flex-direction:row;
+	}
