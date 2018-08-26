@@ -1,0 +1,21 @@
+重启Nginx
+
+service nginx restart
+/etc/init.d/nginx stop
+/etc/init.d/nginx start
+
+Ubuntu Nginx
+
+$sudo service nginx start
+$sudo service nginx stop
+
+
+
+nginx+php-fpm访问报错，只显示access denied
+
+nginx.conf中root是配置在server段内，“location /”之外，所以排除此错误可能性；
+
+php-fpm中security.limit_extensions也不限制“.php”，所以排除此可能性；
+
+最后，修改了php.ini，将cgi.fix_pathinfo从0改为1，问题解
+重启php-fpm service php-fpm restart

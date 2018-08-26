@@ -1,4 +1,4 @@
-1.###开启binlog
+ 1.###开启binlog
 
 	1.查看二进制日志是否开启，show variables like 'log_%';
 	2.开启binlog
@@ -11,3 +11,8 @@
 	[mysqld]
 	 #添加这一行就ok了=号后面的路径和名字自己定义吧
 	3.重启mysql
+
+
+###2.导出select
+select * from tan_stock_record where date>='2018=08-13' into outfile '/var/lib/mysql-files/a.sql';
+/var/lib/mysql-files：导出路径

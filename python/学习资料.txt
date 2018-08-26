@@ -1,1 +1,7 @@
 1.廖雪峰官网：https://www.liaoxuefeng.com/wiki/001374738125095c955c1e6d8bb493182103fac9270762a000/001374738150500472fd5785c194ebea336061163a8a974000
+2.安装包：pygame，https://www.cnblogs.com/mttree/p/5056267.html
+3.安装pip：https://pypi.python.org/pypi/pip#downloads ：
+4.安装scrapy出现问题：https://blog.csdn.net/hechenggong159/article/details/78916644
+需要高版本的twtisted
+
+5

@@ -17,6 +17,10 @@
 查看centos镜像：sudo docker images
 ###3.创建一个容器,使之能运行bash应用
 	sudo docker run -t -i -d --name a123 -v /data:/data -p 80:80 -p 90:90 centos:latest /bin/bash /run.sh
+
+     
+    -d 改成 dit
+sudo docker run -t -i -dit --name a123 -v /data:/data centos:latest /bin/bash /run.sh
 	-d是以Daemon模式运行。
 	-p 80:80 是将本地80端口映射到容器的80端口，现在可以在本地使用http://localhost访问。
 	-v /web:/www 是将本地的/web目录挂载到容器的/www(容器配置的web目录)目录下。
@@ -26,7 +30,7 @@
 	验证docker是否安装完毕：sudo docker ps
 ###4.安装nsenter
 	 cd /tmp;
-	 curl https://www.kernel.org/pub/linux/utils/util-linux/v2.24/util-linux-2.24.tar.gz | tar -zxf-;
+	 curl https://www.kernel.org/pub/linux/utils/util-linux/v2.24/util-linux-2.24.tar.gz | tar -zxvf-;
 	 cd util-linux-2.24;
 	 ./configure --without-ncurses
 	 make nsenter && sudo cp nsenter /usr/local/bin
@@ -185,3 +189,13 @@ updatedb
 
 ###安装phpsize
 yum -y install php-devel 然后 /usr/bin/phpize
+
+
+
+
+开启容器 进入容器
+sudo docker run -dit centos
+sudo docker attach ID
+
+sudo docker run -dit --name c3 -v /data:/data centos:latest /bin/bash /run.sh
+

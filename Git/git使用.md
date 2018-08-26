@@ -58,3 +58,5 @@ git push -u origin master   （注：此操作目的是把本地仓库push到git
 
 
 git cherry-pick
+###永久记住密码
+git config --global credential.helper store

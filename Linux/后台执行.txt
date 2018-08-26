@@ -1,0 +1,10 @@
+https://blog.csdn.net/liuyanfeier/article/details/62422742
+
+nohup command &
+
+使用 jobs 查看任务。
+
+使用 fg %n　关闭。
+
+ps aux | less
+ps aux | grep main.py

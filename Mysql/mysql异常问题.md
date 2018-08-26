@@ -36,3 +36,27 @@ mysql> use mysql;
 mysql> update user set host = '%' where user = 'root';  
  
 mysql> select host, user from user; 
+
+5.7 版本没有password
+改完之后要重启sql
+关键是数据库的mysql里的user表的host user 和密码字段要对应
+
+
+####
+MySQL max_allowed_packet
+
+mysql根据配置文件会限制server接受的数据包大小。
+
+有时候大的插入和更新会被max_allowed_packet 参数限制掉，导致失败。
+
+查看目前配置
+
+show VARIABLES like '%max_allowed_packet%';
+在mysql 命令行中运行
+
+set global max_allowed_packet = 2*1024*1024*10
+然后关闭掉这此mysql server链接，再进入。
+
+show VARIABLES like '%max_allowed_packet%';
+
+或者修改my.cnf

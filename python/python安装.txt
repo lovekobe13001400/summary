@@ -1,1 +1,44 @@
-博客：
+1.安装python:https://www.python.org/downloads/ 
+cmd->python命令yanz->可能会有direx问题，360管家用direx修复工具
+
+2.安装pip，没有setuptools先安装setuptools
+地址：https://pypi.python.org/pypi/setuptools 
+安装成功后新开一个命令窗，输入easy_install 回车，进行检测
+如果提示： 
+error: No urls, filenames, or requirements specified (see –help) 
+请检查环境变量path是否配置了“C:\Python27\Scripts”
+
+3.安装pip
+下载地址：https://pypi.python.org/pypi/pip#downloads 
+python setup.py install 进行安装
+pip命令验证是否已经安装完毕
+
+
+4.安装pygame
+
+
+
+
+5.安装mysqldb
+下载python版本对应的mysql客户端
+https://www.lfd.uci.edu/~gohlke/pythonlibs/
+安装
+pip install mysqlclient-1.3.12-cp36-cp36m-win32.whl
+验证：
+import MySQLdb
+
+卸载pip:sudo python3 -m pip uninstall pip && sudo apt install python3-pip --reinstall
+
+pip高版本问题：
+https://blog.csdn.net/weixin_41598638/article/details/79593651
+
+6.windows安装pip 18.0
+python -m pip install -U pip
+
+linux:
+pip install -U pip
+
+
+###
+Successfully built backcall bs4 crc16 motor pycparser PyDispatcher python-redis simplegeneric tornado Twisted wrapt zope.interface PyYAML hiredis
+pyasn1-modules 0.2.2 has requirement pyasn1<0.5.0,>=0.4.1, but you'll have pyasn1 0.1.9 which is incompatible.
