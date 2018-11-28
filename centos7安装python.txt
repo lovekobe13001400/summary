@@ -1,0 +1,8 @@
+cd /usr/local
+wget https://www.python.org/ftp/python/3.6.5/Python-3.6.5.tar.xz
+tar -xf Python-3.6.5.tar.xz
+
+
+# mkdir python3
+# mv Python-3.6.5 python3
+# cd python3/Python-3.6.5

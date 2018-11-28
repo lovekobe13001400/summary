@@ -1,0 +1,2 @@
+(1153, "Got a packet bigger than 'max_allowed_packet' bytes")
+(2006, "MySQL server has gone away (BrokenPipeError(32, 'Broken pipe'))")

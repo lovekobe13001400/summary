@@ -1,0 +1,8 @@
+redis-cli.exe -h 118.31.73.40 -p 6379 -a redis
+
+$redis = new redis();
+$redis->connect('118.31.73.40', 6379);
+$redis->auth("TAN!card-scf@9436");
+$redis->set('redistest','666666');
+echo $redis->get('redistest');
+
